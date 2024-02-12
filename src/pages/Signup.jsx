@@ -80,8 +80,8 @@ function SignUp(props) {
             <input
               type="radio"
               name="type"
-              value="Staff member"
-              checked={type === "Staff member"}
+              value="Staff"
+              checked={type === "Staff"}
               onChange={handleType}
             />
           </div>
