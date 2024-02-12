@@ -9,17 +9,18 @@ import Booking from './pages/Booking'
 import Profile from './pages/Profile'
 import Ticket from './pages/Ticket'
 import UserList from './pages/UserList'
-import Header from './components/Header'
 import Footer from './components/Footer'
 import JourneySearch from './components/JourneySearch'
+import Navbar from './components/Navbar'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Header />
-      
+
+      <Navbar />
+
       <JourneySearch />
 
       <Routes>
