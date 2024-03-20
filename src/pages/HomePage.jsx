@@ -6,26 +6,48 @@ function HomePage() {
 const { journeys, getJourneys } = useContext(JourneyContext)
 console.log(journeys)
 
-const dateString = journeys[0].departureTime
-console.log(dateString)
+
 
     return(
         <>
             <h1>Homepage</h1>
 
             {journeys.length !== 0 ? (
-                journeys.map(journey => (
-                    <div key={journey._id}>
-                        <h2>{journey.trainNumber}</h2>
-                        <h3>{journey.departureTime}</h3>
-                        <h3>{journey.departureStation}</h3>
-                        <h3>{journey.arrivalStation}</h3>
-                        <h3>{journey.duration}</h3>
-                        <h3>{journey.trainType}</h3>
-                        <h3>{journey.numberOfSeats}</h3>
-                        <h3>{journey.price}</h3>
-                    </div>
-                ))
+                journeys.map(journey => {
+                    const departureDate = new Date(journey.departureTime)
+                    const departureMonth = departureDate.getMonth() + 1
+                    const departureDay = departureDate.getDate()
+                    const departureYear = departureDate.getFullYear()
+                    const departureHour = departureDate.getHours()
+                    const departureMinutes = departureDate.getMinutes()
+
+                    const arrivalDate = new Date(journey.arrivalTime)
+                    const arrivalMonth = arrivalDate.getMonth() + 1
+                    const arrivalDay = arrivalDate.getDate()
+                    const arrivalYear = arrivalDate.getFullYear()
+                    const arrivalHour = arrivalDate.getHours()
+                    const arrivalMinutes = arrivalDate.getMinutes()
+               
+                
+                    return (
+                        <div className="card" key={journey._id}>
+                            <h2>{journey.trainNumber}</h2>
+                            <h3>Departure Date: {departureMonth}/{departureDay}/{departureYear}</h3>
+                            <h3>Time: {departureHour}:{departureMinutes}</h3>
+                            <h3>Arrival Date: {arrivalMonth}/{arrivalDay}/{arrivalYear}</h3>
+                            <h3>Time: {arrivalHour}:{arrivalMinutes}</h3>
+                            <h3>City: {journey.departureStation}</h3>
+                            <h3>City: {journey.arrivalStation}</h3>
+                            <h3>Duration: {journey.duration} minutes</h3>
+                            <h3>Train type: {journey.trainType}</h3>
+                            <h3>Number of seats available: {journey.numberOfSeats}</h3>
+                            <h3>Price: {journey.price}</h3>
+
+                            <button>Book now</button>
+                        </div>
+                    )
+                }  
+                )
             ) : (
                 <h1>Loading...</h1>
             )}
