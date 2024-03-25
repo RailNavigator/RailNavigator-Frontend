@@ -1,12 +1,11 @@
 import { useContext } from "react"; // <== ADD
 import { JourneyContext } from "./../context/journey.context"; // <== ADD
+import { Link } from "react-router-dom";
 
 function HomePage() {
 
-const { journeys, getJourneys } = useContext(JourneyContext)
+const { journeys } = useContext(JourneyContext)
 console.log(journeys)
-
-
 
     return(
         <>
@@ -43,7 +42,7 @@ console.log(journeys)
                             <h3>Number of seats available: {journey.numberOfSeats}</h3>
                             <h3>Price: {journey.price}</h3>
 
-                            <button>Book now</button>
+                            <Link to={`/journey/${journey._id}/booking`} >Book now</Link>
                         </div>
                     )
                 }  
